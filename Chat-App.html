@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chat App</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+
+.chat-container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.messages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.message {
+  border: 1px solid rgb(204, 204, 204);
+  padding: 10px;
+}
+
+.message.sent {
+  background-color: rgb(204, 204, 204);
+}
+
+.message.received {
+  background-color: rgb(10, 0, 0);
+}
+</style>
+</head>
+<body>
+<div class="chat-container">
+  <ul class="messages"></ul>
+  <input type="text" id="message" placeholder="Enter your message">
+  <button id="send">Send it baby</button>
+</div>
+<script>
+var messages = document.querySelector(".messages");
+var messageInput = document.querySelector("#message");
+var sendButton = document.querySelector("#send");
+
+window.removeEventListener("click", sendButton);
+
+sendButton.addEventListener("click", function() {
+  var message = messageInput.value;
+  var li = document.createElement("li");
+  li.classList.add(message.startsWith("sent") ? "sent" : "received");
+  li.innerHTML = message;
+  messages.appendChild(li);
+  messageInput.value = "";
+});
+</script>
+</body>
+</html>
